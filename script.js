@@ -151,11 +151,23 @@ function makeFruitCards(fruits) {
 
 function isFruitYellow(fruit) {
     //TODO: Step 0D -- you fill in this function. 
-    //It should return true if the fruit is yellow.
+    return fruit.color === "yellow";
 }
+    //It should return true if the fruit is yellow.
+
+
 
 function filterYellowFruits() {
     //TODO: Step 0C -- you fill in this function
+    console.log("button clicked")
+    let filterYellowFruits = []
+    for(const fruit of FRUITS){
+        if(isFruitYellow(fruit)) {
+            filterYellowFruits.push(fruit);
+        }
+    }
+    console.log(filterYellowFruits);
+    makeFruitCards(filterYellowFruits)
 }
 
 /**
@@ -197,13 +209,16 @@ function fruitFiltering() {
     fruitRoundButton.addEventListener('click', filterRoundFruits);
 
     //Step 0A: Make a button to filter the fruits if they are yellow
+    let filterYellowButton = document.createElement("button");
+    filterYellowButton.textContent = "Filter Yellow Fruits";
+    filterYellowButton.addEventListener('click', filterYellowFruits);
 
     //select the container for the buttons
     const buttonsContainer = document.querySelector("#fruitButtonsContainer");
     //add the button to the container
     buttonsContainer.appendChild(fruitRoundButton);
     //Step 0B: Add the button to the container, similar to the line above
-
+    buttonsContainer.appendChild(filterYellowButton)
 }
 /***************************************** End Fruit Filtering: Step 0 */
 
@@ -252,9 +267,10 @@ function updateTeamInfo(teamData){
     //update the team logo
     let teamLogo = document.querySelector("#teamLogo");
     //Step 2A: Update the team logo by setting it's source
-    teamLogo.src = '';
+    teamLogo.src = teamData.logo;
     teamLogo.alt = '';
     teamLogo.width = 200;
+    
 
     //Step 2B: Create a paragraph element with the team's sport and append it as a child to the team info container (id="teamInfoContainer")
 
@@ -307,17 +323,17 @@ function runProgram() {
     console.log("Program is running");
 
     //STEP 0: filter the  -- practice
-    fruitFiltering();
+   //fruitFiltering();
 
     //STEP 1A: get the team data of the team of your choice (ASTROS or DASH)
-    // let teamData = DASH;
+    let teamData = ASTROS;
 
     // STEP 1B: log the team data and look at the arrays. How is the information about the team arranged?
     // console.log("Team data: ", teamData);
 
 
     // STEP 2: update the team information
-    // updateTeamInfo(teamData);
+    updateTeamInfo(teamData);
 
     //STEP 3: Finish making a card for a single player
     // let players = teamData.players;
@@ -325,7 +341,7 @@ function runProgram() {
     // addPlayerCard(firstPlayer);
 
     //STEP 4: Loop through the players and add a card for each player
-    setPlayerCards(/**. Step 4A: pass in array of players */);
+    // setPlayerCards(/**. Step 4A: pass in array of players */);
 
     //STEP 5: Filter the players 
     // let playerFilter = document.querySelector("#playersFilter");
